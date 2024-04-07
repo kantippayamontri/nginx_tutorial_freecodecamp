@@ -1,0 +1,21 @@
+1. we create new folder name "fruit"
+2. and make location block in server context
+3. we create add /fruits (the same folder name in /fruit folder)
+4. when we server localhost/fruits -> we serve index.html in /fruits -> nginx will cd in fruits folder
+
+using alias
+1. instead of using root directive, we use alias directive in /carbs
+2. alias will not append /carbs after root path
+3. you need specific folder that has index.html inside
+
+We want to serve xxx.html not index.html
+1. we create vegetables folder that contain vegetables.html
+2. we want to serve vegetables.html instead of index.html
+3. we use try_files directive
+4. /vegetables/vegetables.html = html file we want to serve the path is from root
+    index.html = will serve this file when vegetables.html is not found
+    404 = not found page will serve when 
+
+Using regular expression
+1. type ~* = using regular expression
+2. add /count/[0-9] -> if we request localhost:8080/count/{number} we will serve index.html in try_files

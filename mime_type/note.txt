@@ -1,0 +1,9 @@
+1. goto localhost:8080 
+2. watch network tab and select localhost
+3. focus on Content-Type in Response Headers
+4. if content type = text/plain = if you add css file to decorate -> the nginx will serve in text
+5. we use types context to define Content-Type
+6. instead of use types context we include types context from mime.types file 
+    using include 
+7. 
+

@@ -1,0 +1,82 @@
+1. install nginx
+    -> brew install nginx
+    
+"""
+Docroot is: /opt/homebrew/var/www
+
+The default port has been set in /opt/homebrew/etc/nginx/nginx.conf to 8080 so that
+nginx can run without sudo.
+
+nginx will load all files in /opt/homebrew/etc/nginx/servers/.
+
+To start nginx now and restart at login:
+  brew services start nginx
+Or, if you don't want/need a background service you can just run:
+  /opt/homebrew/opt/nginx/bin/nginx -g daemon\ off\;
+==> Summary
+🍺  /opt/homebrew/Cellar/nginx/1.25.4: 26 files, 2.4MB
+==> Running `brew cleanup nginx`...
+Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+Hide these hints with HOMEBREW_NO_ENV_HINTS (see `man brew`).
+"""
+
+2. /opt/homebrew/etc/nginx -> code .
+3. focus on nginx.conf -> config file for reverse proxy
+4. start nginx -> just type "nginx" in terminal -> localhost:8080(default port)
+
+vocab we called
+
+context ==> inside {} we call context -> events context
+directive ==> each line(key, value) in context
+
+  # this is a global context
+
+  # event context
+  events { 
+      worker_connections  1024; # called directive
+  }
+
+  # http context
+  http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    ...
+  }
+
+5. delete all line in nginx.conf -> we will create from scratch
+
+Serving static content
+1. delete all line in nginx.conf
+2. create index.html
+3. watch in static folder
+
+Mime type
+1. watch in mimetype folder
+
+Location Block
+1. watch in locationBlock folder
+
+Redirect and Rewrite
+1. watch in redirectRewrite folder
+
+Load Balancer
+1. watch in loadBalance folder
+
+command:
+nignx -s reload = reload nginx when we edit nginx.conf
+
+Note: 
+you need to hard reload cuz browser will cached info ->  you need to hard reload 
+cmd + shift + r
+
+

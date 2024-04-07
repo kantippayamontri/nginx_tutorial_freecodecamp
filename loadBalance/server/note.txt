@@ -1,0 +1,2 @@
+run: 
+    gunicorn -w 1 "flask:create_app()"
