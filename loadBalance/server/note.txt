@@ -1,2 +1,26 @@
 run: 
-    gunicorn -w 1 "flask:create_app()"
+    gunicorn -w 1 "flask:create_app() -b :1111"
+
+build docker file:
+    docker build . -t server1 # build docker images with tag name "server1" -> change you can change server name
+    docker images # see all local images
+    docker 
+
+run docker image:
+    docker run -p [machine port]:[docker port(api local port)] -d(detach mode) [image tag name]
+    
+nginx.conf:
+
+    1. add backendserver (same code but use docker to run port 1111,2222,3333)
+        upstream backendserver {
+        server 127.0.0.1:1111;
+        server 127.0.0.1:2222;
+        server 127.0.0.1:3333;
+        }
+    
+    2. add location for load balance
+        location / {
+            proxy_pass http://backendserver;
+        }
+    
+    3. nignx will serve backendserver with round robin algorithm
